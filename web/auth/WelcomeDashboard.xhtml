@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:include src="../head.xhtml"></ui:include>
+<h:body>
+    <ui:include src="../navbar.xhtml"></ui:include>
+
+    <h3>Add Course</h3>
+
+
+
+
+    <div class="row">
+
+        <div class="col-4">
+        <div class="container" >
+            <h:form>
+
+
+                <div class="form-group">
+                    <label >Course Name</label>
+                    <h:selectOneMenu styleClass="form-group" value="#{courseBean.course.course_name}">
+                        <f:selectItem styleClass="form-group" itemValue="Management" itemLabel="Management" />
+                        <f:selectItem itemValue="Artifical Intelligence" itemLabel="Artifical Intelligence" />
+                        <f:selectItem itemValue="Internet of things" itemLabel="Internet of things" />
+                    </h:selectOneMenu>
+                </div>
+
+
+                <div class="form-group">
+                    <label >Course Add Date</label>
+                    <h:inputText  type="datetime-local" value="#{courseBean.course.date}" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label >Phone</label>
+                    <h:inputText value="#{courseBean.course.phone}" styleClass="form-control"  />
+                </div>
+                <div class="form-group">
+                    <label >Fee</label>
+                    <h:inputText  value="#{courseBean.course.fee}" styleClass="form-control"  />
+                </div>
+
+
+
+<div class="form-group">
+    <label >Select Gender</label>
+    <h:selectOneRadio styleClass="form-group" value="#{courseBean.course.gender}">
+        <f:selectItem itemValue="male" itemLabel="Male" />
+        <f:selectItem itemValue="female" itemLabel="Female" />
+    </h:selectOneRadio>
+</div>
+
+
+
+
+            <h:commandLink styleClass="btn btn-success" value="addCourse" action="#{courseBean.addCourse}" />
+
+            </h:form>
+        </div>
+        </div>
+
+<div class="col-8">
+    <div class="container">
+
+
+            <h:dataTable styleClass="table table-striped table-responsive table-hover" value="#{courseBean.allCourses}" var="course">
+                <h:column>
+                    <f:facet name="header">Id</f:facet>
+                    <h:outputText value="#{course.id}"></h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Course Name</f:facet>
+                    <h:outputText value="#{course.course_name}"></h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Added By</f:facet>
+                    <h:outputText value="#{course.addedBy}"></h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Fee</f:facet>
+                    <h:outputText value="#{course.fee}"></h:outputText>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Phone</f:facet>
+                    <h:outputText value="#{course.phone}"></h:outputText>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Gender</f:facet>
+                    <h:outputText value="#{course.gender}"></h:outputText>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Date</f:facet>
+                    <h:outputText value="#{course.date}"></h:outputText>
+                </h:column>
+
+                <h:column>
+                    <h:form>
+                        <f:facet name="header">Edit</f:facet>
+                        <h:commandButton styleClass="btn btn-info" value="Edit" action="#{courseBean.editCourse}">
+                            <f:param name="id" value="#{course.id}"></f:param>
+                        </h:commandButton>
+                    </h:form>
+                </h:column>
+
+                <h:column>
+                    <h:form>
+                        <f:facet name="header">Delete</f:facet>
+                        <h:commandButton styleClass="btn btn-danger" value="Delete" action="#{courseBean.deleteCourse}">
+                            <f:param name="id" value="#{course.id}"></f:param>
+                        </h:commandButton>
+                    </h:form>
+                </h:column>
+            </h:dataTable>
+        </div>
+
+    </div>
+
+</div>
+</h:body>
+</html>

@@ -4,6 +4,8 @@
       <root url="jar://D:/my cust/8th semester/EAD Lab CS S1 (Friday)/javax.faces-2.2.1.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ideaLibSources/javax.faces-2.2.1-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>

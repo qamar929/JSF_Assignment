@@ -22,7 +22,31 @@ public class DbConnection {
         }
     }
 
-    public void RegisterUser(String name,String email,String password){
+
+    public boolean addCourse(String Course_name,int AddedBy,String fee,String phone,String gender,String date){
+        try {
+            String sqlQuery = "INSERT INTO course(name,addedBy,fee,phone,gender,date) VALUES(?,?,?,?,?,?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
+            preparedStatement.setString(1, Course_name);
+            preparedStatement.setInt(2, AddedBy);
+            preparedStatement.setString(3, fee);
+            preparedStatement.setString(4, phone);
+            preparedStatement.setString(5, gender);
+            preparedStatement.setString(6, date);
+
+
+            int noOfRowsInserted = preparedStatement.executeUpdate();
+            if(noOfRowsInserted>0){
+                System.out.println(noOfRowsInserted + " course inserted!");
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public Boolean RegisterUser(String name,String email,String password){
         try {
             String sqlQuery = "INSERT INTO user(name,email,password) VALUES(?,?,?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
@@ -33,10 +57,13 @@ public class DbConnection {
             int noOfRowsInserted = preparedStatement.executeUpdate();
             if(noOfRowsInserted>0){
                 System.out.println(noOfRowsInserted + " rows inserted!");
+                return true;
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return false;
     }
 
 
@@ -59,14 +86,18 @@ public class DbConnection {
         return null;
     }
 
-    public void updateRecord(int id,String firstName,String lastName,String email){
+    public void updateRecord(int id,String Course_name,int AddedBy,String fee,String phone,String gender,String date){
         try {
-            String sqlQuery = "UPDATE student SET first_name=?,last_name=?,email=? WHERE id=?";
+            String sqlQuery = "UPDATE course SET name=?,addedBy=?,fee=?,phone=?,gender=?,date=? WHERE course_id=?";
             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
-            preparedStatement.setString(1,firstName);
-            preparedStatement.setString(2,lastName);
-            preparedStatement.setString(3,email);
-            preparedStatement.setInt(4,id);
+            preparedStatement.setString(1, Course_name);
+            preparedStatement.setInt(2, AddedBy);
+            preparedStatement.setString(3, fee);
+            preparedStatement.setString(4, phone);
+            preparedStatement.setString(5, gender);
+            preparedStatement.setString(6, date);
+
+            preparedStatement.setInt(7, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -75,7 +106,7 @@ public class DbConnection {
 
     public void deleteRecord(int id){
         try {
-            String sqlQuery = "DELETE from user WHERE id=?";
+            String sqlQuery = "DELETE from course WHERE course_id=?";
             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
             preparedStatement.setInt(1,id);
             preparedStatement.executeUpdate();
@@ -86,7 +117,7 @@ public class DbConnection {
 
     public ResultSet getRecord(int id){
         try {
-            String sqlQuery = "SELECT * FROM user where id=?";
+            String sqlQuery = "SELECT * FROM course where course_id=?";
             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
             preparedStatement.setInt(1,id);
             ResultSet result = preparedStatement.executeQuery();
@@ -99,7 +130,7 @@ public class DbConnection {
 
     public ResultSet getRecords(){
         try {
-            String sqlQuery = "SELECT * FROM user";
+            String sqlQuery = "SELECT * FROM course";
             Statement statement = connection.createStatement();
             ResultSet result = statement.executeQuery(sqlQuery);
             return result;

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:include src="../head.xhtml"></ui:include>
+<h:body>
+<ui:include src="../navbar.xhtml"></ui:include>
+
+
+    <div class="container">
+        <h1>Edit Student</h1>
+        <div class="row">
+            <h:form>
+                <div class="form-group">
+                    <label >Course Name</label>
+                    <h:selectOneMenu styleClass="form-group" value="#{editCourse.course_name}">
+                        <f:selectItem styleClass="form-group" itemValue="Management" itemLabel="Management" />
+                        <f:selectItem itemValue="Artifical Intelligence" itemLabel="Artifical Intelligence" />
+                        <f:selectItem itemValue="Internet of things" itemLabel="Internet of things" />
+                    </h:selectOneMenu>
+                </div>
+
+
+                <div class="form-group">
+                    <label >Course Add Date</label>
+                    <h:inputText  type="datetime-local" value="#{editCourse.date}" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label >Phone</label>
+                    <h:inputText value="#{editCourse.phone}" styleClass="form-control"  />
+                </div>
+                <div class="form-group">
+                    <label >Fee</label>
+                    <h:inputText  value="#{editCourse.fee}" styleClass="form-control"  />
+                </div>
+
+
+
+                <div class="form-group">
+                    <label >Select Gender</label>
+                    <h:selectOneRadio styleClass="form-group" value="#{editCourse.gender}">
+                        <f:selectItem itemValue="male" itemLabel="Male" />
+                        <f:selectItem itemValue="female" itemLabel="Female" />
+                    </h:selectOneRadio>
+                </div>
+
+
+                <div class="form-group">
+                    <h:commandButton value="Update" action="#{courseBean.updateCourse}" styleClass="btn btn-primary">
+                        <f:param name="id" value="#{editCourse.id}"></f:param>
+                    </h:commandButton>
+                </div>
+            </h:form>
+        </div>
+    </div>
+
+</h:body>
+</html>

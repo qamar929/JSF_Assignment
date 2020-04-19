@@ -46,7 +46,12 @@
                             <input type="checkbox"/>Remember Me
                         </div>
                         <div class="form-group">
-                            <h:commandButton styleClass="btn float-right login_btn" value="Login" action="#{userBean.loginAccount}"/>
+                            <h:commandButton styleClass="btn float-right login_btn" value="Login" action="#{userBean.loginAccount}">
+
+                                <h:outputScript rendered="#{userBean.loggedIn}">
+                                    alert("Successfully Login");
+                                </h:outputScript>
+                            </h:commandButton>
 
                         </div>
                     </h:form>

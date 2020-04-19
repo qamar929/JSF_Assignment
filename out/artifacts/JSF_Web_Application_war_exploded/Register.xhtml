@@ -57,7 +57,15 @@
                             <input type="checkbox"/>Remember Me
                         </div>
                         <div class="form-group">
-                            <h:commandButton styleClass="btn float-right login_btn" value="Register" action="#{userBean.registerAccount}"/>
+                            <h:commandButton id="msg" styleClass="btn float-right login_btn" value="Register" action="#{userBean.registerAccount}">
+
+                                <h:outputScript rendered="#{userBean.registered}">
+                                    alert("Successfully Registered");
+                                </h:outputScript>
+                            </h:commandButton>
+
+
+                           
 
                         </div>
                     </h:form>
